@@ -9,6 +9,7 @@ require "phlexible_calendar"
 
 module Dummy
   class Application < Rails::Application
+    config.autoload_paths << "#{root}/app"
     config.load_defaults Rails::VERSION::STRING.to_f
 
     # For compatibility with applications that use this config
