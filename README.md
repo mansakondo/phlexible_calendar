@@ -62,22 +62,9 @@ Execute:
 $ bundle
 ```
 
-Mount the engine:
-```ruby
-Rails.application.routes.draw do
-  mount PhlexibleCalendar::Engine => "/phlexible_calendar"
-end
-```
-
-Add this line in `app/assets/config/manifest.js`:
-```js
-//= link phlexible_calendar_manifest.js
-```
-
-Include the assets in `app/views/layouts/application.html.erb`:
-```erb
-<%= stylesheet_link_tag "phlexible_calendar/application" %>
-<%= javascript_include_tag "phlexible_calendar/application" %>
+Then, run the installer:
+```bash
+rails phlexible_calendar:install
 ```
 
 ## Contributing
