@@ -4,6 +4,7 @@ PATH
     phlexible_calendar (0.1.0)
       phlex (>= 0.3.0)
       rails (>= 6.1)
+      rounding
 
 GEM
   remote: https://rubygems.org/
@@ -138,6 +139,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    rounding (1.0.1)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)

@@ -1,4 +1,5 @@
 require "phlex"
+require "rounding"
 
 module PhlexibleCalendar
   class Engine < ::Rails::Engine

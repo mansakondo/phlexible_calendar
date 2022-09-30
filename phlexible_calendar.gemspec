@@ -19,4 +19,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 6.1"
   spec.add_dependency "phlex", ">= 0.3.0"
+  spec.add_dependency "rounding"
 end
