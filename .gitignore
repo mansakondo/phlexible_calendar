@@ -1,4 +1,5 @@
 /.bundle/
+/node_modules/
 /doc/
 /log/*.log
 /pkg/
