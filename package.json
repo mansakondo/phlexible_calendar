@@ -1,9 +1,13 @@
 {
   "dependencies": {
+    "autoprefixer": "^10.4.12",
     "esbuild": "^0.15.10",
-    "esbuild-rails": "^1.0.3"
+    "esbuild-rails": "^1.0.3",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8"
   },
   "scripts": {
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/phlexible_calendar/application.tailwind.css -o ./app/assets/builds/phlexible_calendar/application.css",
     "build": "node esbuild.config.js"
   }
 }
