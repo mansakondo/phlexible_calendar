@@ -1,14 +1,5 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Events</h1>
-
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+<div class="flex justify-center">
+  <%= render PhlexibleCalendar::Views::Calendar.new(events: @events) %>
 </div>
-
-<%= link_to "New event", new_event_path %>
