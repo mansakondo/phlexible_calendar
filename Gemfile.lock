@@ -105,6 +105,8 @@ GEM
       syntax_tree (~> 3.6)
       zeitwerk (~> 2.6)
     prettier_print (0.1.0)
+    puma (5.6.5)
+      nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-test (2.0.2)
@@ -160,6 +162,7 @@ PLATFORMS
 
 DEPENDENCIES
   phlexible_calendar!
+  puma
   sprockets-rails
   sqlite3
 
