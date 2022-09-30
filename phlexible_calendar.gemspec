@@ -18,4 +18,5 @@ Gem::Specification.new do |spec|
   end
 
   spec.add_dependency "rails", ">= 6.1"
+  spec.add_dependency "phlex", ">= 0.3.0"
 end
