@@ -77,10 +77,8 @@ module PhlexibleCalendar
                             else
                               if (event = sorted_events.fetch(time, nil))
                                 div id: event.start_time, class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs z-10 rounded", style: "height: #{event.height_in_percentage}%;", draggable: true do
-                                  a href: event_path(event.id) do
-                                    span do
-                                      event.name
-                                    end
+                                  span do
+                                    event.name
                                   end
                                 end
                               end
