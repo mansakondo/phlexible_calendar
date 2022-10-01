@@ -3,7 +3,7 @@ module PhlexibleCalendar::Event
 
   included do
     def duration_in_quarter_hours
-      seconds = end_time - start_time
+      seconds = (end_time - start_time).to_i
       minutes = seconds / 60
       minutes / 15
     end
