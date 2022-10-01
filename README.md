@@ -4,11 +4,12 @@ Build custom calendars with Phlex.
 :warning: This project is still experimental.
 
 ## Motivation
-This project started as an experiment to see how we can use [Phlex](https://github.com/joeldrapper/phlex) with [Simple Calendar](https://github.com/excid3/simple_calendar). Then, I realized how it easy it would be to rebuild Simple Calendar with Phlex, as we can
+This project started as an experiment to see how we can use [Phlex](https://github.com/joeldrapper/phlex) with [Simple Calendar](https://github.com/excid3/simple_calendar). Then, I realized how easy it would be to rebuild Simple Calendar with Phlex, as we can
 just create a `Phlex::View` instead of using separate files for partials and helpers.
 
 ## Usage
-This gem works like Simple Calendar. To generate a week calendar, for example, you need a model that responds to `#start_time` and `#end_time`.
+### Getting started
+This gem works like [Simple Calendar](https://github.com/excid3/simple_calendar). To generate a calendar, you need a model that responds to `#start_time` and `#end_time` (but you can use [custom attributes](#custom-attributes)).
 
 Let's scaffold an event resource to demonstrate how it works:
 ```bash
@@ -37,7 +38,32 @@ class Event < ApplicationRecord
 end
 ```
 
-If you need to set the time zone, you can do so in `ApplicationController`:
+Then, add this in `app/views/events/index.html.erb` to generate a calendar:
+```erb
+<%= render PhlexibleCalendar::Views::Calendar.new(events: @events) %>
+```
+
+### Custom attributes
+```ruby
+class Event < ApplicationRecord
+  include PhlexibleCalendar::Event
+
+  def start_attribute
+    :start
+  end
+
+  def end_attribute
+    :end
+  end
+end
+```
+
+```erb
+<%= render PhlexibleCalendar::Views::Calendar.new(events: @events, start_attribute: :start, end_attribute: :end) %>
+```
+
+### Time zones
+You need to set `session[:time_zone]` to specify the time zone per request:
 ```ruby
 class ApplicationController < ActionController::Base
   before_action :set_time_zone
@@ -48,11 +74,6 @@ class ApplicationController < ActionController::Base
       Time.zone = session[:time_zone]
     end
 end
-```
-
-Then, add this in `app/views/events/index.html.erb` to generate a calendar:
-```erb
-<%= render PhlexibleCalendar::Views::Calendar.new(events: @events) %>
 ```
 
 ## Installation
