@@ -76,7 +76,7 @@ module PhlexibleCalendar
                               block.call sorted_events.fetch(time, [])
                             else
                               sorted_events.fetch(time, []).each_with_index do |event, i|
-                                div id: event.start_time, class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove" if i > 0)}", draggable: true do
+                                div id: event.send(start_attribute), class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove" if i > 0)}", draggable: true do
                                   span do
                                     event.name
                                   end
@@ -118,8 +118,8 @@ module PhlexibleCalendar
         (start_date.beginning_of_week..start_date.end_of_week).to_a
       end
 
-      def attribute
-        options.fetch(:attribute, :start_time).to_sym
+      def start_attribute
+        options.fetch(:start_attribute, :start_time).to_sym
       end
 
       def end_attribute
@@ -133,7 +133,7 @@ module PhlexibleCalendar
       def sorted_events
         @sorted_events ||=
           begin
-            events = options.fetch(:events, []).reject { |e| e.send(attribute).nil? }.sort_by(&attribute)
+            events = options.fetch(:events, []).reject { |e| e.send(start_attribute).nil? }.sort_by(&start_attribute)
             index_events_by_time(events)
           end
       end
@@ -142,7 +142,7 @@ module PhlexibleCalendar
         events_grouped_by_date = Hash.new { |h, k| h[k] = [] }
 
         events.each do |event|
-          event_start_date = event.send(attribute).to_date
+          event_start_date = event.send(start_attribute).to_date
           event_end_date = event.respond_to?(end_attribute) && !event.send(end_attribute).nil? ? event.send(end_attribute).to_date : event_start_date
           (event_start_date..event_end_date.to_date).each do |enumerated_date|
             events_grouped_by_date[enumerated_date] << event
@@ -154,7 +154,8 @@ module PhlexibleCalendar
 
       def index_events_by_time(events)
         events.each_with_object({}) do |event, indexed_by_time|
-          time = event.start_time.round_to(15.minutes)
+          event_start_time = event.send(start_attribute)
+          time = event_start_time.round_to(15.minutes)
 
           if indexed_by_time[time]
             indexed_by_time[time] << event
