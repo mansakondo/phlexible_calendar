@@ -73,10 +73,10 @@ module PhlexibleCalendar
                         times.each_with_index do |time, i|
                           div class: "w-full", style: "height: 25%; top: #{25*i}%;", data: { time: time } do
                             if block_given?
-                              block.call time, sorted_events.fetch(time, nil)
+                              block.call sorted_events.fetch(time, [])
                             else
-                              if (event = sorted_events.fetch(time, nil))
-                                div id: event.start_time, class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs z-10 rounded", style: "height: #{event.height_in_percentage}%;", draggable: true do
+                              sorted_events.fetch(time, []).each_with_index do |event, i|
+                                div id: event.start_time, class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove" if i > 0)}", draggable: true do
                                   span do
                                     event.name
                                   end
@@ -154,7 +154,13 @@ module PhlexibleCalendar
 
       def index_events_by_time(events)
         events.each_with_object({}) do |event, indexed_by_time|
-          indexed_by_time[event.start_time.round_to(15.minutes)] = event
+          time = event.start_time.round_to(15.minutes)
+
+          if indexed_by_time[time]
+            indexed_by_time[time] << event
+          else
+            indexed_by_time[time] = [event]
+          end
         end
       end
 
