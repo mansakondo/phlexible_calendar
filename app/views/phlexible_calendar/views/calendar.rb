@@ -48,13 +48,19 @@ module PhlexibleCalendar
           div class: "flex flex-col", data: { controller: "calendar-component" } do
             div class: "flex ml-16 py-8"do
               date_range.slice(0, 7).each do |day|
-                span class: "text-md text-center text-gray-600 w-[160px]" do
-                  t("date.abbr_day_names")[day.wday]
+                div class: "flex flex-col" do
+                  span class: "text-md text-center text-gray-600 w-[160px]" do
+                    t("date.abbr_day_names")[day.wday]
+                  end
+
+                  span class: "text-md text-center text-gray-500 w-[160px]" do
+                    day.to_s
+                  end
                 end
               end
             end
 
-            div class: "overflow-auto h-[540px]" do
+            div class: "overflow-auto h-[520px]" do
               div class: "flex" do
                 div class: "flex flex-col w-16" do
                   HOURS.each_with_index do |hour, i|

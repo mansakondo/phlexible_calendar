@@ -516,10 +516,6 @@ video {
   bottom: 3rem;
 }
 
-.z-10 {
-  z-index: 10;
-}
-
 .ml-16 {
   margin-left: 4rem;
 }
@@ -546,6 +542,10 @@ video {
 
 .h-10 {
   height: 2.5rem;
+}
+
+.h-\[520px\] {
+  height: 520px;
 }
 
 .w-\[160px\] {
@@ -623,4 +623,9 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
