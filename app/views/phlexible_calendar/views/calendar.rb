@@ -82,7 +82,7 @@ module PhlexibleCalendar
                               block.call sorted_events.fetch(time, [])
                             else
                               sorted_events.fetch(time, []).each_with_index do |event, i|
-                                div id: event.send(start_attribute), class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove" if i > 0)}", draggable: true do
+                                div id: event.send(start_attribute), class: "absolute flex justify-center items-center w-full bg-gray-900 text-white text-xs rounded", style: "height: #{event.height_in_percentage}%; width: calc(100% - #{(i) * 10}px); z-index: #{i+1};#{(" border: groove" if i > 0)}", draggable: "true" do
                                   span do
                                     event.name
                                   end
