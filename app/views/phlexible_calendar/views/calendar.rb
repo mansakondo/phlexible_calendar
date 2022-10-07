@@ -100,11 +100,11 @@ module PhlexibleCalendar
 
             div class: "flex justify-around items-center mt-4" do
               a href: url_for_previous_view, class: "flex justify-center items-center h-10 w-10 bg-gray-900 text-white rounded-full " do
-                t("simple_calendar.previous", default: "<")
+                t("phlexible_calendar.previous", default: "<")
               end
 
               a href: url_for_next_view, class: "flex justify-center items-center h-10 w-10 bg-gray-900 text-white rounded-full " do
-                t("simple_calendar.next", default: ">")
+                t("phlexible_calendar.next", default: ">")
               end
             end
           end
