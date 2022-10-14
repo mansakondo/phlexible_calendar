@@ -32,7 +32,7 @@ module PhlexibleCalendar
                   end
 
                   span class: "text-md text-center text-gray-500 w-[160px]" do
-                    day.to_s
+                    day.day
                   end
                 end
               end
