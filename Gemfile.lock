@@ -1,4 +1,10 @@
 PATH
+  remote: ../../ruby/playdate
+  specs:
+    playdate (0.0.1)
+      i18n
+
+PATH
   remote: .
   specs:
     phlexible_calendar (0.1.0)
@@ -164,6 +170,7 @@ PLATFORMS
 
 DEPENDENCIES
   phlexible_calendar!
+  playdate!
   puma
   sprockets-rails
   sqlite3

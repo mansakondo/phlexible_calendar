@@ -25,14 +25,14 @@ module PhlexibleCalendar
         div class: "flex justify-center" do
           div class: "flex flex-col", data: { controller: "calendar-component" } do
             div class: "flex ml-16 py-8"do
-              date_range.slice(0, 7).each do |day|
+              date_range.each do |day|
                 div class: "flex flex-col" do
                   span class: "text-md text-center text-gray-600 w-[160px]" do
-                    t("date.abbr_day_names")[day.wday]
+                    day.abbreviated_name
                   end
 
                   span class: "text-md text-center text-gray-500 w-[160px]" do
-                    day.day
+                    day.day_of_month
                   end
                 end
               end
@@ -50,9 +50,9 @@ module PhlexibleCalendar
                   end
                 end
 
-                date_range.slice(0, 7).each do |day|
+                date_range.each do |day|
                   div class: "relative flex flex-col w-[160px]" do
-                    times_for_quarter_hours(day).each_slice(4) do |times|
+                    times_for_quarter_hours(day.date).each_slice(4) do |times|
                       div class: "relative h-14 border" do
                         times.each_with_index do |time, i|
                           div class: "w-full", style: "height: 25%; top: #{25*i}%;", data: { time: time } do
@@ -91,15 +91,15 @@ module PhlexibleCalendar
 
       private
       def url_for_next_view
-        url_for(@params.merge(start_date_param => (date_range.last + 1.day).iso8601))
+        url_for(@params.merge(start_date_param => (date_range.last.date + 1.day).iso8601))
       end
 
       def url_for_previous_view
-        url_for(@params.merge(start_date_param => (date_range.first - 1.day).iso8601))
+        url_for(@params.merge(start_date_param => (date_range.first.date - 1.day).iso8601))
       end
 
       def date_range
-        (start_date.beginning_of_week..start_date.end_of_week).to_a
+        start_date.to_playdate_week.days
       end
 
       def start_attribute
@@ -158,7 +158,7 @@ module PhlexibleCalendar
       end
 
       def end_date
-        date_range.last
+        date_range.last.date
       end
 
       def additional_days
