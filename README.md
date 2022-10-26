@@ -3,6 +3,9 @@ Build custom calendars with Phlex.
 
 :warning: This project is still experimental.
 
+## Demo
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/mansakondo/stimulus-rephlex-calendar-demo)
+
 ## Motivation
 This project started as an experiment to see how we can use [Phlex](https://github.com/joeldrapper/phlex) with [Simple Calendar](https://github.com/excid3/simple_calendar). Then, I realized how easy it would be to rebuild Simple Calendar with Phlex, as we can
 just create a `Phlex::View` instead of using separate files for partials and helpers.
